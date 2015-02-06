@@ -1,0 +1,6 @@
+{"timestamp": 1422404769, "email": "stanton.ayala@anarco.net", "event": "delivered"}
+{"timestamp": 1422408310, "email": "buck.jacobs@cablam.name", "event": "delivered"}
+{"timestamp": 1422414293, "email": "morales.hewitt@flexigen.net", "event": "delivered"}
+{"timestamp": 1422415828, "email": "buck.jacobs@cablam.name", "event": "open"}
+{"timestamp": 1422416530, "email": "buck.jacobs@cablam.name", "event": "click", "url": "http://example.com/YAZUISZ046D"}
+{"timestamp": 1422416953, "email": "buck.jacobs@cablam.name", "event": "click", "url": "http://example.com/5XPSNXS77DA"}
