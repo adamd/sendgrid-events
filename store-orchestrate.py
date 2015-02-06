@@ -3,8 +3,25 @@
 import os, sys, json, porc
 
 def process_event(js, c):
-  print "processing event"
   event_types = ["delivered", "click", "open"]
+  if (js["event"] in event_types):
+    print js
+    # First try a patch (will fail if new email address)
+    njs = {"email": js["email"]}
+    njs[js["event"] + "_timestamp"] = js["timestamp"]
+    r = c.patch_merge("engagements", js["email"], njs)
+
+    # Initialize engagements object for this email address
+    if (r.status_code == 404):
+      # Initialize other event types
+      for etp in event_types:
+        if (js["event"] != etp):
+          njs[etp + "_timestamp"] = 0
+      # Add timestamp from current event
+      njs["first_timestamp"] = js["timestamp"]
+      c.put("engagements", js["email"], njs)
+    
+    
 
 # import_event expects:
 # js - JSON object created from single SendGrid event
@@ -14,6 +31,7 @@ def process_event(js, c):
 def import_event(js, c):
   event_types = ["delivered", "click", "open"]
   if (js["event"] in event_types):
+    print js
     c.post("raw_events", js)
 
 # import_file expects:
